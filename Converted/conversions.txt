@@ -1,16 +1,17 @@
-﻿         | byte | sbyte | short | ushort | int | uint | long | ulong | float | double | decimal | bool | string | Guid |
-         +------+-------+-------+--------+-----+------+------+-------+-------+--------+---------+------+--------+------+
-byte     |  -   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-sbyte    |  Y   |   -   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-short    |  Y   |   Y   |   -   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-ushort   |  Y   |   Y   |   Y   |   -    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-int      |  Y   |   Y   |   Y   |   Y    |  -  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-uint     |  Y   |   Y   |   Y   |   Y    |  Y  |  -   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-long     |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  -   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-ulong    |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   -   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |
-float    |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   -   |   Y    |    Y    |  -   |   Y    |  -   |
-double   |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   -    |    Y    |  -   |   Y    |  -   |
-decimal  |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    -    |  -   |   Y    |  -   |
-bool     |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   -    |    -    |  -   |   -    |  -   |
-string   |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   -    |  Y   |
-Guid     |  -   |   -   |   -   |   -    |  -  |  -   |  -   |   -   |   -   |   -    |    -    |  -   |   Y    |  -   |
+﻿       TO| byte | sbyte | short | ushort | int | uint | long | ulong | float | double | decimal | bool | string | Guid | Version |
+FROM-----+------+-------+-------+--------+-----+------+------+-------+-------+--------+---------+------+--------+------+---------|
+byte     |  -   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+sbyte    |  Y   |   -   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+short    |  Y   |   Y   |   -   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+ushort   |  Y   |   Y   |   Y   |   -    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+int      |  Y   |   Y   |   Y   |   Y    |  -  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+uint     |  Y   |   Y   |   Y   |   Y    |  Y  |  -   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+long     |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  -   |   Y   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+ulong    |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   -   |   Y   |   Y    |    Y    |  Y   |   Y    |  -   |    -    |
+float    |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   -   |   Y    |    Y    |  -   |   Y    |  -   |    -    |
+double   |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   -    |    Y    |  -   |   Y    |  -   |    -    |
+decimal  |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    -    |  -   |   Y    |  -   |    -    |
+bool     |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   -    |    -    |  -   |   -    |  -   |    -    |
+string   |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   -    |  Y   |    Y    |
+Guid     |  -   |   -   |   -   |   -    |  -  |  -   |  -   |   -   |   -   |   -    |    -    |  -   |   Y    |  -   |    -    |
+Version  |  -   |   -   |   -   |   -    |  -  |  -   |  -   |   -   |   -   |   -    |    -    |  -   |   Y    |  -   |    -    |

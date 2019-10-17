@@ -21,6 +21,15 @@ namespace Converted.ValueConverters
             RegisterBooleanConversions();
             RegisterStringConversions();
             RegisterGuidConversions();
+            RegisterVersionConversions();
+        }
+
+        private void RegisterVersionConversions()
+        {
+            Register((Version input, IFormatProvider? formatProvider) => input.ToString());
+            Register<string, Version>(
+                (input, formatProvider)
+                    => Version.TryParse(input, out Version output) ? (true, output) : (false, default));
         }
 
         private void RegisterGuidConversions()
@@ -28,7 +37,7 @@ namespace Converted.ValueConverters
             Register((Guid input, IFormatProvider? formatProvider) => input.ToString());
             Register<string, Guid>(
                 (input, formatProvider)
-                    => Guid.TryParse(input, out Guid output) ? (true, output) : (false, Guid.Empty));
+                    => Guid.TryParse(input, out Guid output) ? (true, output) : (false, default));
         }
 
         private void RegisterStringConversions()
