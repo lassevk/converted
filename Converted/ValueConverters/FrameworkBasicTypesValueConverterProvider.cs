@@ -22,22 +22,32 @@ namespace Converted.ValueConverters
             RegisterStringConversions();
             RegisterGuidConversions();
             RegisterVersionConversions();
+            RegisterUriConversions();
+        }
+
+        private void RegisterUriConversions()
+        {
+            Register((Uri input, IFormatProvider? formatProvider) => input.ToString());
+#pragma warning disable 8619
+            Register<string, Uri>(
+                (input, formatProvider)
+                    => Uri.TryCreate(input, UriKind.RelativeOrAbsolute, out Uri output) ? (true, output) : (false, default));
+#pragma warning restore 8619
         }
 
         private void RegisterVersionConversions()
         {
             Register((Version input, IFormatProvider? formatProvider) => input.ToString());
+#pragma warning disable 8619
             Register<string, Version>(
-                (input, formatProvider)
-                    => Version.TryParse(input, out Version output) ? (true, output) : (false, default));
+                (input, formatProvider) => Version.TryParse(input, out Version output) ? (true, output) : (false, default));
+#pragma warning restore 8619
         }
 
         private void RegisterGuidConversions()
         {
             Register((Guid input, IFormatProvider? formatProvider) => input.ToString());
-            Register<string, Guid>(
-                (input, formatProvider)
-                    => Guid.TryParse(input, out Guid output) ? (true, output) : (false, default));
+            Register<string, Guid>((input, formatProvider) => Guid.TryParse(input, out Guid output) ? (true, output) : (false, default));
         }
 
         private void RegisterStringConversions()

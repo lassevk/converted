@@ -58,6 +58,12 @@ namespace Converted.Tests
 
             yield return new TestCaseData(typeof(Guid), typeof(string)).SetName("Guid -> string");
             yield return new TestCaseData(typeof(string), typeof(Guid)).SetName("string -> Guid");
+
+            yield return new TestCaseData(typeof(Version), typeof(string)).SetName("Version -> string");
+            yield return new TestCaseData(typeof(string), typeof(Version)).SetName("string -> Version");
+        
+            yield return new TestCaseData(typeof(Uri), typeof(string)).SetName("Uri -> string");
+            yield return new TestCaseData(typeof(string), typeof(Uri)).SetName("string -> Uri");
         }
 
         [Test]
