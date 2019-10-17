@@ -11,7 +11,7 @@ namespace Converted
         static DefaultValueConverterProviders()
         {
             Collection.Add(new FrameworkBasicTypesValueConverterProvider());
-            // ToNullableType ?
+            Collection.Add(new NullableTypesValueConverterProvider());
             Collection.Add(new ToStringValueConverterProvider());
 
             // ToObject ?

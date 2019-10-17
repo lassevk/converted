@@ -37,9 +37,16 @@ namespace Converted.Tests
 
             Type[] numericTypes = integralTypes.Concat(floatingPointTypes).ToArray();
 
+            Type toNullable(Type underlyingType) => typeof(Nullable<>).MakeGenericType(underlyingType);
+
             foreach (Type inputType in numericTypes)
                 foreach (Type outputType in numericTypes)
+                {
                     yield return new TestCaseData(inputType, outputType).SetName($"{NameOf(inputType)} -> {NameOf(outputType)}");
+                    yield return new TestCaseData(toNullable(inputType), outputType).SetName($"{NameOf(inputType)}? -> {NameOf(outputType)}");
+                    yield return new TestCaseData(toNullable(inputType), toNullable(outputType)).SetName($"{NameOf(inputType)}? -> {NameOf(outputType)}?");
+                    yield return new TestCaseData(inputType, toNullable(outputType)).SetName($"{NameOf(inputType)} -> {NameOf(outputType)}?");
+                }
 
             foreach (Type type in numericTypes)
             {

@@ -8,7 +8,7 @@ namespace Converted.ValueConverters
         private readonly Dictionary<(Type inputType, Type outputType), ValueConverterDelegate> _Converters =
             new Dictionary<(Type inputType, Type outputType), ValueConverterDelegate>();
 
-        public (bool success, ValueConverterDelegate? valueConverter) TryGetConverter(Type inputType, Type outputType)
+        public (bool success, ValueConverterDelegate? valueConverter) TryGetConverter(IValueConverter mainValueConverter, Type inputType, Type outputType)
             => _Converters.TryGetValue((inputType, outputType), out ValueConverterDelegate converter) ? (true, converter) : (false, null);
 
         protected void Register<TInput, TOutput>(Func<TInput, IFormatProvider?, TOutput> converter)

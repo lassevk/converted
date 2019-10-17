@@ -59,7 +59,7 @@ namespace Converted
         private ValueConverterDelegate TrySynthesizeConverter(Type inputType, Type outputType)
             => (
                 from provider in _ValueConverterProviders
-                let result = provider.TryGetConverter(inputType, outputType)
+                let result = provider.TryGetConverter(this, inputType, outputType)
                 where result.success
                 select result.valueConverter).FirstOrDefault();
     }

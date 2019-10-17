@@ -18,7 +18,7 @@ namespace Converted.ValueConverters
             return (true, input.ToString());
         }
 
-        public (bool success, ValueConverterDelegate? valueConverter) TryGetConverter(Type inputType, Type outputType)
+        public (bool success, ValueConverterDelegate? valueConverter) TryGetConverter(IValueConverter mainValueConverter, Type inputType, Type outputType)
             => outputType == typeof(string) ? (true, _Converter) : (false, null);
     }
 }
