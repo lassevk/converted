@@ -17,34 +17,43 @@ namespace Converted.ValueConverters
             var outputTypeIsNullable = outputType.IsGenericType && outputType.GetGenericTypeDefinition() == typeof(Nullable<>);
 
             if (inputTypeIsNullable && outputTypeIsNullable)
-            {
-                Type underlyingInputType = inputType.GetGenericArguments()[0];
-                Type underlyingOutputType = outputType.GetGenericArguments()[0];
-#pragma warning disable 8600
-                ValueConverterDelegate converter = mainValueConverter.TryGetConverter(underlyingInputType, underlyingOutputType);
-#pragma warning restore 8600
-                return (converter != null, converter);
-            }
+                return TryGetConverterFromNullableToNullable(mainValueConverter, inputType, outputType);
 
             if (inputTypeIsNullable)
-            {
-                Type underlyingInputType = inputType.GetGenericArguments()[0];
-#pragma warning disable 8600
-                ValueConverterDelegate converter = mainValueConverter.TryGetConverter(underlyingInputType, outputType);
-#pragma warning restore 8600
-                return (converter != null, converter);
-            }
+                return TryGetConverterFromNullable(mainValueConverter, inputType, outputType);
 
             if (outputTypeIsNullable)
-            {
-                Type underlyingOutputType = outputType.GetGenericArguments()[0];
-#pragma warning disable 8600
-                ValueConverterDelegate converter = mainValueConverter.TryGetConverter(inputType, underlyingOutputType);
-#pragma warning restore 8600
-                return (converter != null, converter);
-            }
+                return TryGetConverterToNullable(mainValueConverter, inputType, outputType);
 
             return (false, null);
+        }
+
+        private static (bool success, ValueConverterDelegate? valueConverter) TryGetConverterToNullable(IValueConverter mainValueConverter, Type inputType, Type outputType)
+        {
+            Type underlyingOutputType = outputType.GetGenericArguments()[0];
+#pragma warning disable 8600
+            ValueConverterDelegate converter = mainValueConverter.TryGetConverter(inputType, underlyingOutputType);
+#pragma warning restore 8600
+            return (converter != null, converter);
+        }
+
+        private static (bool success, ValueConverterDelegate? valueConverter) TryGetConverterFromNullable(IValueConverter mainValueConverter, Type inputType, Type outputType)
+        {
+            Type underlyingInputType = inputType.GetGenericArguments()[0];
+#pragma warning disable 8600
+            ValueConverterDelegate converter = mainValueConverter.TryGetConverter(underlyingInputType, outputType);
+#pragma warning restore 8600
+            return (converter != null, converter);
+        }
+
+        private static (bool success, ValueConverterDelegate? valueConverter) TryGetConverterFromNullableToNullable(IValueConverter mainValueConverter, Type inputType, Type outputType)
+        {
+            Type underlyingInputType = inputType.GetGenericArguments()[0];
+            Type underlyingOutputType = outputType.GetGenericArguments()[0];
+#pragma warning disable 8600
+            ValueConverterDelegate converter = mainValueConverter.TryGetConverter(underlyingInputType, underlyingOutputType);
+#pragma warning restore 8600
+            return (converter != null, converter);
         }
     }
 }
