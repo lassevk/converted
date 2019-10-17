@@ -20,6 +20,13 @@ namespace Converted.ValueConverters
             RegisterDecimalConversions();
             RegisterBooleanConversions();
             RegisterStringConversions();
+            RegisterGuidConversions();
+        }
+
+        private void RegisterGuidConversions()
+        {
+            Register((string input, IFormatProvider? formatProvider) => Guid.TryParse(input, out Guid output) ? output : Guid.Empty);
+            Register((Guid input, IFormatProvider? formatProvider) => input.ToString());
         }
 
         private void RegisterStringConversions()

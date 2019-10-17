@@ -55,6 +55,9 @@ namespace Converted.Tests
 
             yield return new TestCaseData(typeof(bool), typeof(string)).SetName("bool -> string");
             yield return new TestCaseData(typeof(string), typeof(bool)).SetName("string -> bool");
+
+            yield return new TestCaseData(typeof(Guid), typeof(string)).SetName("Guid -> string");
+            yield return new TestCaseData(typeof(string), typeof(Guid)).SetName("string -> Guid");
         }
 
         [Test]
