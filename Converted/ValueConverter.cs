@@ -7,9 +7,9 @@ namespace Converted
 {
     public class ValueConverter : IValueConverter
     {
-        private static readonly ValueConverterDelegate _IdentityConverter = (value, formatProvider) => value;
+        private static readonly ValueConverterDelegate _IdentityConverter = (value, formatProvider) => (true, value);
 
-        private static Lazy<IValueConverter> _Default = new Lazy<IValueConverter>(
+        private static readonly Lazy<IValueConverter> _Default = new Lazy<IValueConverter>(
             () => new ValueConverter(DefaultValueConverterProviders.Collection), LazyThreadSafetyMode.ExecutionAndPublication);
 
         private readonly object _Lock = new object();

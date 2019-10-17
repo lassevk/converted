@@ -25,44 +25,78 @@ namespace Converted.ValueConverters
 
         private void RegisterGuidConversions()
         {
-            Register((string input, IFormatProvider? formatProvider) => Guid.TryParse(input, out Guid output) ? output : Guid.Empty);
             Register((Guid input, IFormatProvider? formatProvider) => input.ToString());
+            Register<string, Guid>(
+                (input, formatProvider)
+                    => Guid.TryParse(input, out Guid output) ? (true, output) : (false, Guid.Empty));
         }
 
         private void RegisterStringConversions()
         {
             Register((byte input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => byte.TryParse(input, NumberStyles.Any, formatProvider, out byte output) ? output : (byte)0);
+            Register<string, byte>(
+                (input, formatProvider) => byte.TryParse(input, NumberStyles.Any, formatProvider, out byte output)
+                    ? (true, output)
+                    : (false, (byte)0));
 
             Register((sbyte input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => sbyte.TryParse(input, NumberStyles.Any, formatProvider, out sbyte output) ? output : (sbyte)0);
-        
+            Register<string, sbyte>(
+                (input, formatProvider) => sbyte.TryParse(input, NumberStyles.Any, formatProvider, out sbyte output)
+                    ? (true, output)
+                    : (false, (sbyte)0));
+
             Register((short input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => short.TryParse(input, NumberStyles.Any, formatProvider, out short output) ? output : (short)0);
-        
+            Register<string, short>(
+                (input, formatProvider) => short.TryParse(input, NumberStyles.Any, formatProvider, out short output)
+                    ? (true, output)
+                    : (false, (short)0));
+
             Register((ushort input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => ushort.TryParse(input, NumberStyles.Any, formatProvider, out ushort output) ? output : (ushort)0);
-        
+            Register<string, ushort>(
+                (input, formatProvider) => ushort.TryParse(input, NumberStyles.Any, formatProvider, out ushort output)
+                    ? (true, output)
+                    : (false, (ushort)0));
+
             Register((int input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => int.TryParse(input, NumberStyles.Any, formatProvider, out int output) ? output : 0);
+            Register<string, int>(
+                (input, formatProvider)
+                    => int.TryParse(input, NumberStyles.Any, formatProvider, out int output) ? (true, output) : (false, 0));
 
             Register((uint input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => uint.TryParse(input, NumberStyles.Any, formatProvider, out uint output) ? output : (uint)0);
-        
+            Register<string, uint>(
+                (input, formatProvider) => uint.TryParse(input, NumberStyles.Any, formatProvider, out uint output)
+                    ? (true, output)
+                    : (false, (uint)0));
+
             Register((long input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => long.TryParse(input, NumberStyles.Any, formatProvider, out long output) ? output : (long)0);
-        
+            Register<string, long>(
+                (input, formatProvider) => long.TryParse(input, NumberStyles.Any, formatProvider, out long output)
+                    ? (true, output)
+                    : (false, (long)0));
+
             Register((ulong input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => ulong.TryParse(input, NumberStyles.Any, formatProvider, out ulong output) ? output : (ulong)0);
-        
+            Register<string, ulong>(
+                (input, formatProvider) => ulong.TryParse(input, NumberStyles.Any, formatProvider, out ulong output)
+                    ? (true, output)
+                    : (false, (ulong)0));
+
             Register((float input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => float.TryParse(input, NumberStyles.Any, formatProvider, out float output) ? output : 0f);
+            Register<string, float>(
+                (input, formatProvider) => float.TryParse(input, NumberStyles.Any, formatProvider, out float output)
+                    ? (true, output)
+                    : (false, 0f));
 
             Register((double input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => double.TryParse(input, NumberStyles.Any, formatProvider, out double output) ? output : 0.0);
-        
+            Register<string, double>(
+                (input, formatProvider) => double.TryParse(input, NumberStyles.Any, formatProvider, out double output)
+                    ? (true, output)
+                    : (false, 0.0));
+
             Register((decimal input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
-            Register((string input, IFormatProvider? formatProvider) => decimal.TryParse(input, NumberStyles.Any, formatProvider, out decimal output) ? output : 0M);
+            Register<string, decimal>(
+                (input, formatProvider) => decimal.TryParse(input, NumberStyles.Any, formatProvider, out decimal output)
+                    ? (true, output)
+                    : (false, 0M));
 
             Register(
                 (string input, IFormatProvider? formatProvider) => input switch
@@ -171,7 +205,7 @@ namespace Converted.ValueConverters
 
             Register((short input, IFormatProvider? formatProvider) => input != 0);
         }
- 
+
         private void RegisterUInt32Conversions()
         {
             Register((uint input, IFormatProvider? formatProvider) => (byte)input);

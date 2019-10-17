@@ -11,22 +11,21 @@ namespace Converted.ValueConverters
         public (bool success, ValueConverterDelegate? valueConverter) TryGetConverter(Type inputType, Type outputType)
             => _Converters.TryGetValue((inputType, outputType), out ValueConverterDelegate converter) ? (true, converter) : (false, null);
 
-        protected void Register<TInput, TOutput>(ValueConverterDelegate<TInput, TOutput> converter)
+        protected void Register<TInput, TOutput>(Func<TInput, IFormatProvider?, TOutput> converter)
         {
-            #pragma warning disable 8653
-            Register(
-                typeof(TInput), typeof(TOutput), (input, formatProvider) =>
-                {
-                    if (input == null)
-                        return default(TOutput);
-
-                    return converter((TInput)input, formatProvider);
-                });
-
-            #pragma warning restore 8653
+#pragma warning disable 8601
+            Register(typeof(TInput), typeof(TOutput), (input, formatProvider) => (true, converter((TInput)input, formatProvider)));
+#pragma warning restore 8601
         }
 
-        protected void Register(Type inputType, Type outputType, ValueConverterDelegate converter)
+        protected void Register<TInput, TOutput>(ValueConverterDelegate<TInput, TOutput> converter)
+        {
+#pragma warning disable 8601
+            Register(typeof(TInput), typeof(TOutput), (input, formatProvider) => converter((TInput)input, formatProvider));
+#pragma warning restore 8601
+        }
+
+        private void Register(Type inputType, Type outputType, ValueConverterDelegate converter)
         {
             _Converters.Add((inputType, outputType), converter);
         }

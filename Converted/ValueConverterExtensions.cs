@@ -11,7 +11,11 @@ namespace Converted
                 return null;
 
 #pragma warning disable 8601
-            return (input, provider) => (TOutput)temp(input, provider);
+            return (input, provider) =>
+            {
+                var (success, output) = temp(input, provider);
+                return (success, (TOutput)output);
+            };
 #pragma warning restore 8601
         }
 
@@ -19,14 +23,14 @@ namespace Converted
             this IValueConverter valueConverter, object? input, Type inputType, Type outputType, IFormatProvider? formatProvider = null)
         {
             ValueConverterDelegate? converter = valueConverter.TryGetConverter(inputType, outputType);
-            return converter == null ? (false, null) : (true, converter(input, formatProvider));
+            return converter?.Invoke(input, formatProvider) ?? (false, null);
         }
 
         public static (bool success, TOutput output) TryConvert<TInput, TOutput>(
             this IValueConverter valueConverter, TInput input, IFormatProvider? formatProvider = null)
         {
             ValueConverterDelegate<TInput, TOutput>? converter = valueConverter.TryGetConverter<TInput, TOutput>();
-            return converter == null ? (false, default) : (true, converter(input, formatProvider));
+            return converter?.Invoke(input, formatProvider) ?? (false, default);
         }
 
         public static object? Convert(
@@ -36,7 +40,12 @@ namespace Converted
             if (converter == null)
                 throw new FormatException($"Unable to convert from type '{inputType}' to '{outputType}', no conversion registered");
 
-            return converter(input, formatProvider);
+            var (success, output) = converter(input, formatProvider);
+            if (!success)
+                throw new FormatException($"Unable to convert from type '{inputType}' to '{outputType}', conversion not possible");
+
+            return output;
+
         }
 
 #pragma warning disable 8601
