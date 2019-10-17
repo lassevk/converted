@@ -7,22 +7,8 @@ using NUnit.Framework;
 namespace Converted.Tests
 {
     [TestFixture]
-    public class DefaultValueConverterTests
+    public class DefaultValueConverterTests : TestBase
     {
-        private IValueConverter _ValueConverter;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _ValueConverter = new ValueConverter(DefaultValueConverterProviders.Collection);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _ValueConverter = null;
-        }
-
         public static IEnumerable<TestCaseData> ExpectedConversionTypeCombinations()
         {
             Type[] integralTypes = new[]
@@ -71,13 +57,15 @@ namespace Converted.Tests
         
             yield return new TestCaseData(typeof(Uri), typeof(string)).SetName("Uri -> string");
             yield return new TestCaseData(typeof(string), typeof(Uri)).SetName("string -> Uri");
+
+            yield return new TestCaseData(typeof(TestEnum), typeof(int)).SetName("enum -> int");
         }
 
         [Test]
         [TestCaseSource(nameof(ExpectedConversionTypeCombinations))]
         public void TryGetConverter_ForAllFrameworkCombinations_ReturnsConverter(Type inputType, Type outputType)
         {
-            ValueConverterDelegate converter = _ValueConverter.TryGetConverter(inputType, outputType);
+            ValueConverterDelegate converter = ValueConverter.TryGetConverter(inputType, outputType);
             Assert.NotNull(converter);
         }
 

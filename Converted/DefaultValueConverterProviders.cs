@@ -13,6 +13,7 @@ namespace Converted
             Collection.Add(new FrameworkBasicTypesValueConverterProvider());
             Collection.Add(new NullableTypesValueConverterProvider());
             Collection.Add(new ToStringValueConverterProvider());
+            Collection.Add(new EnumValueConverterProvider());
 
             // ToObject ?
             // Enum ?

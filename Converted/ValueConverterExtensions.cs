@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Converted
 {
@@ -45,13 +46,18 @@ namespace Converted
                 throw new FormatException($"Unable to convert from type '{inputType}' to '{outputType}', conversion not possible");
 
             return output;
-
         }
 
 #pragma warning disable 8601
         public static TOutput Convert<TInput, TOutput>(
             this IValueConverter valueConverter, TInput input, IFormatProvider? formatProvider = null)
-            => (TOutput)Convert(valueConverter, input, typeof(TInput), typeof(TOutput), formatProvider);
+        {
+            var value = Convert(valueConverter, input, typeof(TInput), typeof(TOutput), formatProvider);
+            if (value == null)
+                return default!;
+
+            return (TOutput)value;
+        }
 #pragma warning restore 8601
     }
 }
