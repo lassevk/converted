@@ -12,5 +12,5 @@ float    |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   -   |  
 double   |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   -    |    Y    |  -   |   Y    |      |
 decimal  |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    -    |  -   |   Y    |      |
 bool     |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   -    |    -    |  -   |   -    |      |
-string   |
+string   |  Y   |   Y   |   Y   |   Y    |  Y  |  Y   |  Y   |   Y   |   Y   |   Y    |    Y    |  Y   |   -    |      |
 Guid     |

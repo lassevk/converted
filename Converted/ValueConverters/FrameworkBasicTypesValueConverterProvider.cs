@@ -56,33 +56,33 @@ namespace Converted.ValueConverters
         
             Register((decimal input, IFormatProvider? formatProvider) => input.ToString(formatProvider));
             Register((string input, IFormatProvider? formatProvider) => decimal.TryParse(input, NumberStyles.Any, formatProvider, out decimal output) ? output : 0M);
+
+            Register(
+                (string input, IFormatProvider? formatProvider) => input switch
+                {
+                    "False" => false,
+                    "FALSE" => false,
+                    "false" => false,
+                    "0" => false,
+                    "True" => true,
+                    "TRUE" => true,
+                    "true" => true,
+                    "1" => true,
+                    _ => false
+                });
         }
 
         private void RegisterBooleanConversions()
         {
-            Register((byte input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (byte)1 : (byte)0);
-
-            Register((sbyte input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (sbyte)1 : (sbyte)0);
-
-            Register((ushort input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (ushort)1 : (ushort)0);
-
-            Register((short input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (short)1 : (short)0);
-
-            Register((uint input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (uint)1 : (uint)0);
-
-            Register((int input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? 1 : 0);
-
-            Register((ulong input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (ulong)1 : (ulong)0);
-
-            Register((long input, IFormatProvider? formatProvider) => input != 0);
             Register((bool input, IFormatProvider? formatProvider) => input ? (long)1 : (long)0);
+            Register((bool input, IFormatProvider? formatProvider) => input ? "True" : "False");
         }
 
         private void RegisterByteConversions()
@@ -101,6 +101,8 @@ namespace Converted.ValueConverters
             Register((byte input, IFormatProvider? formatProvider) => (float)input);
             Register((byte input, IFormatProvider? formatProvider) => (double)input);
             Register((byte input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((byte input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterSByteConversions()
@@ -119,6 +121,8 @@ namespace Converted.ValueConverters
             Register((sbyte input, IFormatProvider? formatProvider) => (float)input);
             Register((sbyte input, IFormatProvider? formatProvider) => (double)input);
             Register((sbyte input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((sbyte input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterUInt16Conversions()
@@ -137,6 +141,8 @@ namespace Converted.ValueConverters
             Register((ushort input, IFormatProvider? formatProvider) => (float)input);
             Register((ushort input, IFormatProvider? formatProvider) => (double)input);
             Register((ushort input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((ushort input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterInt16Conversions()
@@ -155,6 +161,8 @@ namespace Converted.ValueConverters
             Register((short input, IFormatProvider? formatProvider) => (float)input);
             Register((short input, IFormatProvider? formatProvider) => (double)input);
             Register((short input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((short input, IFormatProvider? formatProvider) => input != 0);
         }
  
         private void RegisterUInt32Conversions()
@@ -173,6 +181,8 @@ namespace Converted.ValueConverters
             Register((uint input, IFormatProvider? formatProvider) => (float)input);
             Register((uint input, IFormatProvider? formatProvider) => (double)input);
             Register((uint input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((uint input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterInt32Conversions()
@@ -191,6 +201,8 @@ namespace Converted.ValueConverters
             Register((int input, IFormatProvider? formatProvider) => (float)input);
             Register((int input, IFormatProvider? formatProvider) => (double)input);
             Register((int input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((int input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterUInt64Conversions()
@@ -209,6 +221,8 @@ namespace Converted.ValueConverters
             Register((ulong input, IFormatProvider? formatProvider) => (float)input);
             Register((ulong input, IFormatProvider? formatProvider) => (double)input);
             Register((ulong input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((ulong input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterInt64Conversions()
@@ -227,6 +241,8 @@ namespace Converted.ValueConverters
             Register((long input, IFormatProvider? formatProvider) => (float)input);
             Register((long input, IFormatProvider? formatProvider) => (double)input);
             Register((long input, IFormatProvider? formatProvider) => (decimal)input);
+
+            Register((long input, IFormatProvider? formatProvider) => input != 0);
         }
 
         private void RegisterSingleConversions()
