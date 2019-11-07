@@ -14,6 +14,7 @@ namespace Converted
             Collection.Add(new NullableTypesValueConverterProvider());
             Collection.Add(new ToStringValueConverterProvider());
             Collection.Add(new EnumValueConverterProvider());
+            Collection.Add(new BoxingValueConverterProvider());
 
             // ToObject ?
             // Enum ?

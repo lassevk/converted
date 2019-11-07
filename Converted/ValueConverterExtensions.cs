@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Converted
 {
@@ -11,13 +10,11 @@ namespace Converted
             if (temp == null)
                 return null;
 
-#pragma warning disable 8601
             return (input, provider) =>
             {
                 var (success, output) = temp(input, provider);
-                return (success, (TOutput)output);
+                return (success, (TOutput)output!);
             };
-#pragma warning restore 8601
         }
 
         public static (bool success, object? output) TryConvert(
@@ -48,7 +45,6 @@ namespace Converted
             return output;
         }
 
-#pragma warning disable 8601
         public static TOutput Convert<TInput, TOutput>(
             this IValueConverter valueConverter, TInput input, IFormatProvider? formatProvider = null)
         {
@@ -58,6 +54,22 @@ namespace Converted
 
             return (TOutput)value;
         }
-#pragma warning restore 8601
+
+        public static T ConvertTo<T>(this IValueConverter valueConverter, object input, IFormatProvider? formatProvider = null)
+        {
+            if (input is null)
+            {
+                if (typeof(T).IsClass)
+                    return default!;
+
+                throw new FormatException($"Unable to convert from null value to '{typeof(T)}', conversion not possible");
+            }
+
+            var value = Convert(valueConverter, input, input.GetType(), typeof(T), formatProvider);
+            if (value is null)
+                return default!;
+
+            return (T)value;
+        }
     }
 }
