@@ -21,7 +21,6 @@ namespace Converted.Tests
         [TestCase(TestEnum.Value1, 1)]
         [TestCase(TestEnum.Value2, 2)]
         [TestCase(TestEnum.Value10, 10)]
-        [TestCase(null, 0)]
         public void Convert_FromNullableEnumToInt32_ProducesExpectedResults(TestEnum? input, int expected)
         {
             int output = ValueConverter.Convert<TestEnum?, int>(input);

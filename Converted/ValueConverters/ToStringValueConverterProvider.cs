@@ -11,9 +11,8 @@ namespace Converted.ValueConverters
             if (input == null)
                 return (true, ""); // In line with Convert.ToString((object)null)
 
-            if (formatProvider != null)
-                if (input is IFormattable formattable)
-                    return (true, formattable.ToString(null, formatProvider));
+            if (formatProvider != null && input is IFormattable formattable)
+                return (true, formattable.ToString(null, formatProvider));
 
             return (true, input.ToString());
         }

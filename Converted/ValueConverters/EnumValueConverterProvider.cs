@@ -52,6 +52,7 @@ namespace Converted.ValueConverters
                 {
                     if (input == null)
                         return (false, null);
+
                     var output = Convert.ChangeType(input, outputType);
                     return (output != null, output);
                 });

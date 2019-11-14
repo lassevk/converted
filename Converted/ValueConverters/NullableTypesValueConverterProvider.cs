@@ -53,7 +53,10 @@ namespace Converted.ValueConverters
 #pragma warning disable 8600
             ValueConverterDelegate converter = mainValueConverter.TryGetConverter(underlyingInputType, underlyingOutputType);
 #pragma warning restore 8600
-            return (converter != null, converter);
+            if (converter == null)
+                return (false, null);
+
+            return (true, (input, provider) => input == null ? (true, null) : converter(input, provider));
         }
     }
 }
