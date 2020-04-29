@@ -4,6 +4,12 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>8</LangVersion>
         <Nullable>enable</Nullable>
+        <Title>Converted</Title>
+        <Description>Value conversion library</Description>
+        <Copyright>(C) 2020 Lasse Vågsæther Karlsen</Copyright>
+        <PackageProjectUrl>https://github.com/lassevk/converted</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/lassevk/converted.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>

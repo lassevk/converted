@@ -13,16 +13,16 @@ namespace Converted.ValueConverters
 
         protected void Register<TInput, TOutput>(Func<TInput, IFormatProvider?, TOutput> converter)
         {
-#pragma warning disable 8601
+#pragma warning disable 8601,8604
             Register(typeof(TInput), typeof(TOutput), (input, formatProvider) => (true, converter((TInput)input, formatProvider)));
-#pragma warning restore 8601
+#pragma warning restore 8601,8604
         }
 
         protected void Register<TInput, TOutput>(ValueConverterDelegate<TInput, TOutput> converter)
         {
-#pragma warning disable 8601
+#pragma warning disable 8601,8604
             Register(typeof(TInput), typeof(TOutput), (input, formatProvider) => converter((TInput)input, formatProvider));
-#pragma warning restore 8601
+#pragma warning restore 8601,8604
         }
 
         private void Register(Type inputType, Type outputType, ValueConverterDelegate converter)

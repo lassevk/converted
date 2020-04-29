@@ -6,7 +6,7 @@ namespace Converted
 {
     public class DefaultValueConverterProviders
     {
-        public static List<IValueConverterProvider> Collection = new List<IValueConverterProvider>();
+        public static readonly List<IValueConverterProvider> Collection = new List<IValueConverterProvider>();
 
         static DefaultValueConverterProviders()
         {
