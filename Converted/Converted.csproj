@@ -10,6 +10,10 @@
         <PackageProjectUrl>https://github.com/lassevk/converted</PackageProjectUrl>
         <RepositoryUrl>https://github.com/lassevk/converted.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>Converted.snk</AssemblyOriginatorKeyFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,6 +23,11 @@
       <Compile Update="ValueConverterExtensions.cs">
         <DependentUpon>IValueConverter.cs</DependentUpon>
       </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)">
+            <Link>LICENSE.md</Link>
+        </None>
     </ItemGroup>
 
 </Project>
