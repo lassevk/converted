@@ -11,6 +11,8 @@ namespace Converted
         static DefaultValueConverterProviders()
         {
             Collection.Add(new FrameworkBasicTypesValueConverterProvider());
+            Collection.Add(new ByteArrayValueConvertedProvider());
+            Collection.Add(new CharArrayValueConverterProvider());
             Collection.Add(new NullableTypesValueConverterProvider());
             Collection.Add(new ToStringValueConverterProvider());
             Collection.Add(new EnumValueConverterProvider());
