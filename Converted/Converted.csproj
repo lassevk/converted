@@ -15,7 +15,7 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>Converted.snk</AssemblyOriginatorKeyFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.0-beta</PackageVersion>
+        <PackageVersion>1.0.0-alpha</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
