@@ -6,6 +6,7 @@
         <LangVersion>8</LangVersion>
         <Nullable>enable</Nullable>
         <Title>Newtonsoft Json Adapter for Converted</Title>
+        <Authors>Lasse Vågsæther Karlsen &gt;lasse@vkarlsen.no&lt;</Authors>
         <Description>Value conversion library, Newtonsoft Json adapter</Description>
         <Copyright>(C) 2020 Lasse Vågsæther Karlsen</Copyright>
         <PackageProjectUrl>https://github.com/lassevk/converted</PackageProjectUrl>
@@ -15,7 +16,7 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>Converted.snk</AssemblyOriginatorKeyFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.0-alpha</PackageVersion>
+        <PackageVersion>1.0.1-alpha2</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
